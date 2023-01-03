@@ -19,6 +19,7 @@ function compileLkm() {
   KVER=$2
   OUT_PATH="${TMP_PATH}/${PLATFORM}"
   mkdir -p "${OUT_PATH}"
+  sudo chmod 1777 "${OUT_PATH}"
   # Compile using docker
 #  docker run --rm -t -v "${OUT_PATH}":/output -v "${PWD}":/input \
 #    fbelavenuto/syno-toolkit:${PLATFORM}-${TOOLKIT_VER} compile-lkm
