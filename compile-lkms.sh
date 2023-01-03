@@ -22,7 +22,7 @@ function compileLkm() {
   # Compile using docker
 #  docker run --rm -t -v "${OUT_PATH}":/output -v "${PWD}":/input \
 #    fbelavenuto/syno-toolkit:${PLATFORM}-${TOOLKIT_VER} compile-lkm
-  docker run --rm -t -v "${OUT_PATH}":/output -v "${PWD}":/input \
+  docker run -u 1000 --rm -t -v "${OUT_PATH}":/output -v "${PWD}":/input \
     fbelavenuto/syno-compiler:${TOOLKIT_VER} compile-lkm ${PLATFORM}
   mv "${OUT_PATH}/redpill-dev.ko" "${DEST_PATH}/rp-${PLATFORM}-${KVER}-dev.ko"
   rm -f "${DEST_PATH}/rp-${PLATFORM}-${KVER}-dev.ko.gz"
