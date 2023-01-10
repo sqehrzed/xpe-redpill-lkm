@@ -18,6 +18,13 @@
 static unsigned long org_shimmed_entries[VTK_SIZE] = { '\0' }; //original entries which were shimmed by custom entries
 static unsigned long cust_shimmed_entries[VTK_SIZE] = { '\0' }; //custom entries which were set as shims
 
+static int bios_get_power_status(POWER_INFO *power)
+{
+    power->power_1 = POWER_STATUS_GOOD;
+    power->power_2 = POWER_STATUS_GOOD;
+    return 0;
+}
+
 static int shim_get_gpio_pin_usable(int *pin)
 {
     pin[1] = 0;
@@ -36,13 +43,6 @@ static int shim_set_gpio_pin_usable(int *pin)
 static int bios_get_buz_clr(unsigned char *state)
 {
     *state = 0;
-    return 0;
-}
-
-static int bios_get_power_status(POWER_INFO *power)
-{
-    power->power_1 = POWER_STATUS_GOOD;
-    power->power_2 = POWER_STATUS_GOOD;
     return 0;
 }
 
