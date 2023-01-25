@@ -57,3 +57,4 @@ dkms.conf
 email.patch
 linux-*/
 .idea/
+_compile.sh
