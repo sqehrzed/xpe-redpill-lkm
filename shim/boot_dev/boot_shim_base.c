@@ -3,7 +3,7 @@
 #include "../../config/runtime_config.h" //struct boot_media
 #include "../../internal/scsi/scsi_toolbox.h" //is_sata_disk(), opportunistic_read_capacity()
 #include <scsi/scsi_device.h> //struct scsi_device
-#include <linux/usb.h> //struct usb_device
+//#include <linux/usb.h> //struct usb_device
 
 //Definition of known VID/PIDs for USB-based shims
 #define SBOOT_RET_VID 0xf400 //Retail boot drive VID
