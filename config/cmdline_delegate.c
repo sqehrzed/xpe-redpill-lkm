@@ -438,7 +438,8 @@ int extract_config_from_cmdline(struct runtime_config *config)
         extract_mfg(&config->boot_media.mfg_mode, single_param_chunk)    ||
         extract_port_thaw(&config->port_thaw, single_param_chunk)        ||
         extract_netif_num(&config->netif_num, single_param_chunk)        ||
-        extract_netif_macs(config->macs, single_param_chunk)             ;
+        extract_netif_macs(config->macs, single_param_chunk)             ||
+        report_unrecognized_option(single_param_chunk)                   ;
     }
 
     if (populate_cmdline_blacklist(config->cmdline_blacklist, &config->hw) != 0) {
