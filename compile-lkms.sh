@@ -4,14 +4,12 @@ set -e
 
 TMP_PATH="/tmp"
 DEST_PATH="output"
-TOOLKIT_VER="7.1"
+TOOLKIT_VER="latest"
 
 mkdir -p "${DEST_PATH}"
 
-if [ -f ../arpl/PLATFORMS ]; then
-  cp ../arpl/PLATFORMS PLATFORMS
-else
-  curl -sLO "https://github.com/fbelavenuto/arpl/raw/main/PLATFORMS"
+if [ ! -f PLATFORMS ]; then
+  curl -sLO "https://raw.githubusercontent.com/AuxXxilium/arc/main/PLATFORMS"
 fi
 
 function compileLkm() {
@@ -35,6 +33,7 @@ function compileLkm() {
 }
 
 # Main
+cat PLATFORMS
 docker pull fbelavenuto/syno-compiler:${TOOLKIT_VER}
 while read PLATFORM KVER; do
 #  docker pull fbelavenuto/syno-toolkit:${PLATFORM}-${TOOLKIT_VER}
