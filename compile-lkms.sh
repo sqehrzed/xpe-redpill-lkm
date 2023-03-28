@@ -4,7 +4,7 @@ set -e
 
 TMP_PATH="/tmp"
 DEST_PATH="output"
-TOOLKIT_VER="latest"
+TOOLKIT_VER="7.1"
 
 mkdir -p "${DEST_PATH}"
 
