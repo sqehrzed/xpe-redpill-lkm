@@ -4,7 +4,6 @@ set -e
 
 TMP_PATH="/tmp"
 DEST_PATH="output"
-TOOLKIT_VER="7.1"
 
 mkdir -p "${DEST_PATH}"
 
@@ -15,7 +14,7 @@ fi
 function compileLkm() {
   PLATFORM=$1
   KVER=$2
-  OUT_PATH="${TMP_PATH}/${PLATFORM}"
+  OUT_PATH="${TMP_PATH}/${PLATFORM}/${KVER}"
   mkdir -p "${OUT_PATH}"
   sudo chmod 1777 "${OUT_PATH}"
   # Compile using docker
@@ -34,8 +33,14 @@ function compileLkm() {
 
 # Main
 cat PLATFORMS
-docker pull fbelavenuto/syno-compiler:${TOOLKIT_VER}
 while read PLATFORM KVER; do
+  if [ "${KVER}" = "4.4.180" ]; then
+    TOOLKIT_VER="7.1"
+  elif [ "${KVER}" = "4.4.302" ]; then
+    TOOLKIT_VER="7.2"
+  fi
+  echo "### ${TOOLKIT_VER} ###"
+  docker pull fbelavenuto/syno-compiler:${TOOLKIT_VER}
 #  docker pull fbelavenuto/syno-toolkit:${PLATFORM}-${TOOLKIT_VER}
   compileLkm "${PLATFORM}" "${KVER}" &
 done < PLATFORMS
