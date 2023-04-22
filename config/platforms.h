@@ -9,31 +9,6 @@
 #include "platform_types.h"
 const struct hw_config supported_platforms[] = {
     {
-        .name = "DS916+",
-        .pci_stubs = {
-            { .type = VPD_MARVELL_88SE9235,    .bus = 0x07, .dev = 0x00, .fn = 0x00, .multifunction = false },
-            { .type = VPD_MARVELL_88SE9235,    .bus = 0x08, .dev = 0x00, .fn = 0x00, .multifunction = false },
-            { .type = VPD_MARVELL_88SE9235,    .bus = 0x09, .dev = 0x00, .fn = 0x00, .multifunction = false },
-            { .type = VPD_MARVELL_88SE9235,    .bus = 0x0a, .dev = 0x00, .fn = 0x00, .multifunction = false },
-            { .type = __VPD_TERMINATOR__ }
-        },
-        .emulate_rtc = true,
-        .swap_serial = false,
-        .reinit_ttyS0 = true,
-        .fix_disk_led_ctrl = false,
-        .has_cpu_temp = true,
-        .is_dt = false,
-        .hwmon = {
-            .sys_thermal = { HWMON_SYS_TZONE_REMOTE1_ID, HWMON_SYS_TZONE_LOCAL_ID, HWMON_SYS_TZONE_REMOTE2_ID },
-            .sys_voltage = { HWMON_SYS_VSENS_VCC_ID, HWMON_SYS_VSENS_VPP_ID, HWMON_SYS_VSENS_V33_ID,
-                             HWMON_SYS_VSENS_V5_ID, HWMON_SYS_VSENS_V12_ID },
-            .sys_fan_speed_rpm = { HWMON_SYS_FAN1_ID, HWMON_SYS_FAN2_ID },
-            .hdd_backplane = { HWMON_SYS_HDD_BP_NULL_ID },
-            .psu_status = { HWMON_PSU_NULL_ID },
-            .sys_current = { HWMON_SYS_CURR_NULL_ID },
-        }
-    },
-    {
         .name = "DS918+",
         .pci_stubs = {
             { .type = VPD_MARVELL_88SE9215,    .bus = 0x01, .dev = 0x00, .fn = 0x00, .multifunction = false },
@@ -135,7 +110,7 @@ const struct hw_config supported_platforms[] = {
             .sys_thermal = { HWMON_SYS_TZONE_REMOTE1_ID, HWMON_SYS_TZONE_LOCAL_ID, HWMON_SYS_TZONE_REMOTE2_ID },
             .sys_voltage = { HWMON_SYS_VSENS_VCC_ID, HWMON_SYS_VSENS_VPP_ID, HWMON_SYS_VSENS_V33_ID,
                              HWMON_SYS_VSENS_V5_ID, HWMON_SYS_VSENS_V12_ID },
-            .sys_fan_speed_rpm = {HWMON_SYS_FAN1_ID, HWMON_SYS_FAN2_ID },
+            .sys_fan_speed_rpm = { HWMON_SYS_FAN1_ID, HWMON_SYS_FAN2_ID },
             .hdd_backplane = { HWMON_SYS_HDD_BP_NULL_ID },
             .psu_status = { HWMON_PSU_NULL_ID },
             .sys_current = { HWMON_SYS_CURR_NULL_ID },
@@ -219,7 +194,7 @@ const struct hw_config supported_platforms[] = {
             .sys_thermal = { HWMON_SYS_TZONE_REMOTE1_ID, HWMON_SYS_TZONE_LOCAL_ID, HWMON_SYS_TZONE_REMOTE2_ID },
             .sys_voltage = { HWMON_SYS_VSENS_VCC_ID, HWMON_SYS_VSENS_VPP_ID, HWMON_SYS_VSENS_V33_ID,
                              HWMON_SYS_VSENS_V5_ID, HWMON_SYS_VSENS_V12_ID },
-            .sys_fan_speed_rpm = {HWMON_SYS_FAN1_ID, HWMON_SYS_FAN2_ID },
+            .sys_fan_speed_rpm = { HWMON_SYS_FAN1_ID, HWMON_SYS_FAN2_ID },
             .hdd_backplane = { HWMON_SYS_HDD_BP_NULL_ID },
             .psu_status = { HWMON_PSU_NULL_ID },
             .sys_current = { HWMON_SYS_CURR_NULL_ID },
@@ -259,31 +234,6 @@ const struct hw_config supported_platforms[] = {
         .fix_disk_led_ctrl = true,
         .has_cpu_temp = true,
         .is_dt = true,
-        .hwmon = {
-            .sys_thermal = { HWMON_SYS_TZONE_REMOTE1_ID, HWMON_SYS_TZONE_LOCAL_ID, HWMON_SYS_TZONE_REMOTE2_ID },
-            .sys_voltage = { HWMON_SYS_VSENS_VCC_ID, HWMON_SYS_VSENS_VPP_ID, HWMON_SYS_VSENS_V33_ID,
-                             HWMON_SYS_VSENS_V5_ID, HWMON_SYS_VSENS_V12_ID },
-            .sys_fan_speed_rpm = { HWMON_SYS_FAN1_ID, HWMON_SYS_FAN2_ID },
-            .hdd_backplane = { HWMON_SYS_HDD_BP_NULL_ID },
-            .psu_status = { HWMON_PSU_NULL_ID },
-            .sys_current = { HWMON_SYS_CURR_NULL_ID },
-        }
-    },
-    {
-        .name = "DS3615xs",
-        .pci_stubs = {
-            { .type = VPD_MARVELL_88SE9235, .bus = 0x07, .dev = 0x00, .fn = 0x00, .multifunction = false },
-            { .type = VPD_MARVELL_88SE9235, .bus = 0x08, .dev = 0x00, .fn = 0x00, .multifunction = false },
-            { .type = VPD_MARVELL_88SE9235, .bus = 0x09, .dev = 0x00, .fn = 0x00, .multifunction = false },
-            { .type = VPD_MARVELL_88SE9235, .bus = 0x0a, .dev = 0x00, .fn = 0x00, .multifunction = false },
-            { .type = __VPD_TERMINATOR__ }
-        },
-        .emulate_rtc = false,
-        .swap_serial = true,
-        .reinit_ttyS0 = false,
-        .fix_disk_led_ctrl = false,
-        .has_cpu_temp = true,
-        .is_dt = false,
         .hwmon = {
             .sys_thermal = { HWMON_SYS_TZONE_REMOTE1_ID, HWMON_SYS_TZONE_LOCAL_ID, HWMON_SYS_TZONE_REMOTE2_ID },
             .sys_voltage = { HWMON_SYS_VSENS_VCC_ID, HWMON_SYS_VSENS_VPP_ID, HWMON_SYS_VSENS_V33_ID,
@@ -462,7 +412,7 @@ const struct hw_config supported_platforms[] = {
             .sys_thermal = { HWMON_SYS_TZONE_REMOTE1_ID, HWMON_SYS_TZONE_LOCAL_ID, HWMON_SYS_TZONE_REMOTE2_ID },
             .sys_voltage = { HWMON_SYS_VSENS_VCC_ID, HWMON_SYS_VSENS_VPP_ID, HWMON_SYS_VSENS_V33_ID,
                              HWMON_SYS_VSENS_V5_ID, HWMON_SYS_VSENS_V12_ID },
-            .sys_fan_speed_rpm = {HWMON_SYS_FAN1_ID, HWMON_SYS_FAN2_ID },
+            .sys_fan_speed_rpm = { HWMON_SYS_FAN1_ID, HWMON_SYS_FAN2_ID },
             .hdd_backplane = { HWMON_SYS_HDD_BP_NULL_ID },
             .psu_status = { HWMON_PSU_NULL_ID },
             .sys_current = { HWMON_SYS_CURR_NULL_ID },
@@ -476,31 +426,6 @@ const struct hw_config supported_platforms[] = {
         .emulate_rtc = false,
         .swap_serial = false,
         .reinit_ttyS0 = true,
-        .fix_disk_led_ctrl = false,
-        .has_cpu_temp = true,
-        .is_dt = false,
-        .hwmon = {
-            .sys_thermal = { HWMON_SYS_TZONE_REMOTE1_ID, HWMON_SYS_TZONE_LOCAL_ID, HWMON_SYS_TZONE_REMOTE2_ID },
-            .sys_voltage = { HWMON_SYS_VSENS_VCC_ID, HWMON_SYS_VSENS_VPP_ID, HWMON_SYS_VSENS_V33_ID,
-                             HWMON_SYS_VSENS_V5_ID, HWMON_SYS_VSENS_V12_ID },
-            .sys_fan_speed_rpm = { HWMON_SYS_FAN1_ID, HWMON_SYS_FAN2_ID },
-            .hdd_backplane = { HWMON_SYS_HDD_BP_NULL_ID },
-            .psu_status = { HWMON_PSU_NULL_ID },
-            .sys_current = { HWMON_SYS_CURR_NULL_ID },
-        }
-    },
-    {
-        .name = "RS3413xs+",
-        .pci_stubs = {
-            { .type = VPD_MARVELL_88SE9235, .bus = 0x07, .dev = 0x00, .fn = 0x00, .multifunction = false },
-            { .type = VPD_MARVELL_88SE9235, .bus = 0x08, .dev = 0x00, .fn = 0x00, .multifunction = false },
-            { .type = VPD_MARVELL_88SE9235, .bus = 0x09, .dev = 0x00, .fn = 0x00, .multifunction = false },
-            { .type = VPD_MARVELL_88SE9235, .bus = 0x0a, .dev = 0x00, .fn = 0x00, .multifunction = false },
-            { .type = __VPD_TERMINATOR__ }
-        },
-        .emulate_rtc = false,
-        .swap_serial = true,
-        .reinit_ttyS0 = false,
         .fix_disk_led_ctrl = false,
         .has_cpu_temp = true,
         .is_dt = false,
@@ -541,8 +466,6 @@ const struct hw_config supported_platforms[] = {
     {
         .name = "RS3621xs+",
         .pci_stubs = {
-            { .type = VPD_MARVELL_88SE9235, .bus = 0x09, .dev = 0x00, .fn = 0x00, .multifunction = false },
-            { .type = VPD_MARVELL_88SE9235, .bus = 0x0c, .dev = 0x00, .fn = 0x00, .multifunction = false },
             { .type = __VPD_TERMINATOR__ }
         },
         .emulate_rtc = false,
@@ -564,8 +487,6 @@ const struct hw_config supported_platforms[] = {
     {
         .name = "RS4021xs+",
         .pci_stubs = {
-            { .type = VPD_MARVELL_88SE9235, .bus = 0x09, .dev = 0x00, .fn = 0x00, .multifunction = false },
-            { .type = VPD_MARVELL_88SE9235, .bus = 0x0c, .dev = 0x00, .fn = 0x00, .multifunction = false },
             { .type = __VPD_TERMINATOR__ }
         },
         .emulate_rtc = false,
@@ -587,8 +508,6 @@ const struct hw_config supported_platforms[] = {
     {
         .name = "SA3400",
         .pci_stubs = {
-            { .type = VPD_MARVELL_88SE9235, .bus = 0x09, .dev = 0x00, .fn = 0x00, .multifunction = false },
-            { .type = VPD_MARVELL_88SE9235, .bus = 0x0c, .dev = 0x00, .fn = 0x00, .multifunction = false },
             { .type = __VPD_TERMINATOR__ }
         },
         .emulate_rtc = false,
@@ -643,7 +562,7 @@ const struct hw_config supported_platforms[] = {
             .sys_thermal = { HWMON_SYS_TZONE_REMOTE1_ID, HWMON_SYS_TZONE_LOCAL_ID, HWMON_SYS_TZONE_REMOTE2_ID },
             .sys_voltage = { HWMON_SYS_VSENS_VCC_ID, HWMON_SYS_VSENS_VPP_ID, HWMON_SYS_VSENS_V33_ID,
                              HWMON_SYS_VSENS_V5_ID, HWMON_SYS_VSENS_V12_ID },
-            .sys_fan_speed_rpm = {HWMON_SYS_FAN1_ID, HWMON_SYS_FAN2_ID },
+            .sys_fan_speed_rpm = { HWMON_SYS_FAN1_ID, HWMON_SYS_FAN2_ID },
             .hdd_backplane = { HWMON_SYS_HDD_BP_NULL_ID },
             .psu_status = { HWMON_PSU_NULL_ID },
             .sys_current = { HWMON_SYS_CURR_NULL_ID },
