@@ -284,7 +284,7 @@ static int populate_ata_id(const u8 *req_header, void __user *buff_ptr, const ch
     kbuf[HDIO_DRIVE_CMD_RET_SEC_CNT] = ATA_CMD_ID_ATA_SECTORS;
 
     did->config = 0x0000; //15th bit = ATA device, rest is reserved/obsolete
-    (void)strscpy(disk_serial, disk_name, DISK_NAME_LEN > 20 ? 20 : DISK_NAME_LEN);
+    strscpy(disk_serial, disk_name, DISK_NAME_LEN > 20 ? 20 : DISK_NAME_LEN);
     set_ata_string(did->serial_no, disk_serial, 20);
     set_ata_string(did->fw_rev, "1.13.2", 8);
     set_ata_string(did->model, "Virtual HDD", 40);

@@ -105,11 +105,12 @@ static void print_debug_symbols(const unsigned long *vtable_end)
 
     unsigned long *call_ptr = vtable_start;
     unsigned char *byte_ptr = (char *)vtable_start;
-    for (int i = 0; i < im; i+=8, byte_ptr+=8, call_ptr+=8) {
-        pr_loc_dbg_raw("%02x %02x %02x %02x %02x %02x %02x %02x ",
-          *byte_ptr, *byte_ptr+1, *byte_ptr+2, *byte_ptr+3,
-          *byte_ptr+4, *byte_ptr+5, *byte_ptr+6, *byte_ptr+7);
-        pr_loc_dbg_raw("[%02d] 0x%03x \t%p\t%pS\n", i/8, i-7, (void *) (*call_ptr), (void *) (*call_ptr));
+    for (int i = 0; i < im; i++, byte_ptr++) {
+        pr_loc_dbg_raw("%02x ", *byte_ptr);
+        if ((i+1) % 8 == 0) {
+            pr_loc_dbg_raw(" [%02d] 0x%03x \t%p\t%pS\n", i / 8, i-7, (void *) (*call_ptr), (void *) (*call_ptr));
+            call_ptr++;
+        }
     }
     pr_loc_dbg_raw("\n");
 
@@ -236,6 +237,7 @@ int shim_disk_leds_ctrl(const struct hw_config *hw)
     pr_loc_dbg("Shimming disk led control API");
 
     int out;
+#if LINUX_VERSION_CODE < KERNEL_VERSION(5,0,0)
     //funcSYNOSATADiskLedCtrl exists on (almost?) all platforms, but it's null on some... go figure ;)
     if (funcSYNOSATADiskLedCtrl) {
         ov_funcSYNOSATADiskLedCtrl = override_symbol("funcSYNOSATADiskLedCtrl", funcSYNOSATADiskLedCtrl_shim);
@@ -246,6 +248,7 @@ int shim_disk_leds_ctrl(const struct hw_config *hw)
             return out;
         }
     }
+#endif
 
     if (kernel_has_symbol("syno_ahci_disk_led_enable")) {
         ov_syno_ahci_disk_led_enable = override_symbol("syno_ahci_disk_led_enable", syno_ahci_disk_led_enable_shim);
@@ -277,6 +280,8 @@ int unshim_disk_leds_ctrl(void)
 
     int out;
     bool failed = false;
+
+#if LINUX_VERSION_CODE < KERNEL_VERSION(5,0,0)
     if (ov_funcSYNOSATADiskLedCtrl) {
         out = restore_symbol(ov_funcSYNOSATADiskLedCtrl);
         ov_funcSYNOSATADiskLedCtrl = NULL;
@@ -285,6 +290,7 @@ int unshim_disk_leds_ctrl(void)
             failed = true;
         }
     }
+#endif
 
     if (ov_syno_ahci_disk_led_enable) {
         out = restore_symbol(ov_syno_ahci_disk_led_enable);

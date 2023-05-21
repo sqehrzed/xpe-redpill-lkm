@@ -1,4 +1,3 @@
-
 /**
  * Overrides HWMONGetPSUStatusByI2C to provide fake psu status for SA6400, RS4021xsp and FS2500
  * to find the required symbol you can consult the mfgbios output while booting the dev LKM
@@ -130,4 +129,3 @@ int reset_bios_psu_status_shim(void)
     shim_reset_ok();
     return 0;
 }
-
