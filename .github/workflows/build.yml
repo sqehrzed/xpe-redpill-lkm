@@ -33,9 +33,9 @@ jobs:
           - version: 7.1 
             platform: apollolake
             parm: 'dev-v7 prod-v7 test-v7'
-          - version: 7.1
-            platform: broadwell
-            parm: 'dev-v7 prod-v7 test-v7'
+          #- version: 7.1
+          #  platform: broadwell
+          #  parm: 'dev-v7 prod-v7 test-v7'
           - version: 7.1 
             platform: broadwellnk
             parm: 'dev-v7 prod-v7 test-v7'
@@ -61,9 +61,9 @@ jobs:
           - version: 7.2 
             platform: apollolake
             parm: 'dev-v7 prod-v7 test-v7'
-          - version: 7.2
-            platform: broadwell
-            parm: 'dev-v7 prod-v7 test-v7'
+          #- version: 7.2
+          #  platform: broadwell
+          #  parm: 'dev-v7 prod-v7 test-v7'
           - version: 7.2 
             platform: broadwellnk
             parm: 'dev-v7 prod-v7 test-v7'
