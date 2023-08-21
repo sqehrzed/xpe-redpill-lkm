@@ -240,6 +240,7 @@ jobs:
             # Modify Source File
             echo "Version: ${VERSION}"
             echo "${VERSION}" >VERSION
+            echo "${VERSION}" >"./rp-lkms/VERSION"
             echo "VERSION=${VERSION}" >> $GITHUB_ENV
 
             git pull
