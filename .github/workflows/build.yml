@@ -15,7 +15,7 @@
 #   - version: "7.2"
 #     platform: "broadwell"
 
-name: Build lkms
+name: Build LKMs
 
 on:  
   workflow_dispatch:
@@ -155,7 +155,7 @@ jobs:
 
           sudo cp -a ${ROOT_PATH}/source ${ROOT_PATH}/build_env/ds.${{ matrix.platform }}-${{ matrix.version }}/
 
-      - name: Make lkms
+      - name: Make LKMs
         run: |
           ROOT_PATH=${{ github.workspace }}
 
@@ -223,9 +223,18 @@ jobs:
             echo "${CHANGELOG}" >"rp-lkms/changelog.txt"
           fi
 
-          echo "VERSION: ${VERSION}"
-          echo "VERSION=${VERSION}" >> $GITHUB_ENV
-          echo "${VERSION}" >"rp-lkms/VERSION"
+          if [ -n "${VERSION}" ]; then
+            # Modify Source File
+            echo "${VERSION}" >VERSION
+
+            git pull
+            status=$(git status -s | awk '{printf " %s", $2}')
+            if [ -n "${status}" ]; then
+              git add ${status}
+              git commit -m "build: ${VERSION}"
+              git push -f
+            fi
+          fi
 
       - name: Download from Artifacts
         if: env.VERSION != ''
