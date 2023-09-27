@@ -47,6 +47,9 @@ jobs:
             platform: broadwellnkv2
             parm: "dev-v7 prod-v7"
           - version: 7.1
+            platform: broadwellntbap
+            parm: "dev-v7 prod-v7"
+          - version: 7.1
             platform: denverton
             parm: "dev-v7 prod-v7"
           #- version: 7.1
@@ -76,6 +79,9 @@ jobs:
             parm: "dev-v7 prod-v7"
           - version: 7.2
             platform: broadwellnkv2
+            parm: "dev-v7 prod-v7"
+          - version: 7.2
+            platform: broadwellntbap
             parm: "dev-v7 prod-v7"
           - version: 7.2
             platform: denverton
@@ -118,6 +124,11 @@ jobs:
           git checkout DSM${{ matrix.version }}`[ "${{ matrix.version }}" = "6.2" ] && echo ".4"`
           sudo ./EnvDeploy -v ${{ matrix.version }}`[ "${{ matrix.version }}" = "6.2" ] && echo ".4"` -l  # Get Available platforms
           sudo ./EnvDeploy -q -v ${{ matrix.version }} -p ${{ matrix.platform }}
+
+          # Fault tolerance of pkgscripts-ng
+          if [ "${{ matrix.platform }}" == "broadwellntbap" ] && [ "${{ matrix.version }}" == "7.1" ]; then
+            sed -i '/		broadwellnk	BROADWELLNK/a\		broadwellntbap  BROADWELLNTBAP                  linux-4.4.x             Intel Broadwell with ntb kernel config in AP mode' ${ROOT_PATH}/pkgscripts-ng/include/platforms
+          fi
 
           #ENV
           mkdir -p ${ROOT_PATH}/source
