@@ -59,6 +59,9 @@ jobs:
             platform: geminilake
             parm: "dev-v7 prod-v7"
           - version: 7.1
+            platform: grantley
+            parm: "dev-v7 prod-v7"
+          - version: 7.1
             platform: purley
             parm: "dev-v7 prod-v7"
           - version: 7.1
@@ -91,6 +94,9 @@ jobs:
           #  parm: "dev-v7 prod-v7"
           - version: 7.2
             platform: geminilake
+            parm: "dev-v7 prod-v7"
+          - version: 7.2
+            platform: grantley
             parm: "dev-v7 prod-v7"
           - version: 7.2
             platform: purley
